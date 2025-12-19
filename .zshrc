@@ -1,24 +1,70 @@
-ZSH_SCRIPTS="$HOME/dotenv/zsh"
+# Set up the prompt
 
-source_if () {
-  [ -r $1 ] && source $1
-}
+autoload -Uz promptinit
+promptinit
+prompt adam1
 
-source_if "~/dotenv/.zshrc_original"
-# source_if "$ZSH_SCRIPTS/env.sh"
-# source_if "$ZSH_SCRIPTS/path.sh"
-# source_if "$ZSH_SCRIPTS/aliases.sh"
-# source_if "$ZSH_SCRIPTS/plugins.sh"
-# source_if "$ZSH_SCRIPTS/prompt.sh"
+setopt histignorealldups sharehistory
 
-# Syntax highlight
-source_if "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# Use emacs keybindings even if our EDITOR is set to vi
+bindkey -e
 
-setopt autocd           # cd só digitando o nome da pasta
-setopt correct          # corrige comandos
-setopt histignoredups   # histórico sem duplicar linhas
-setopt interactivecomments
-
+# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+HISTSIZE=1000
+SAVEHIST=1000
 HISTFILE=~/.zsh_history
-HISTSIZE=4000
-SAVEHIST=4000
+
+# Use modern completion system
+autoload -Uz compinit
+compinit
+
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+alias cat=/bin/batcat
+
+source '~/dotenv/zsh/fzf.sh'
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#
+# export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
+# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
+#
+# _fzf_compgen_path(){
+#   fd --hidden --exclude .git . "$1"
+# }
+#
+# _fzf_compgen_dir(){
+#   fd --type=d --hidden --exclude .git . "$1"
+# }
+
+alias ls="eza --color=always --long --git --icons=always --no-user"
+
+eval "$(zoxide init zsh)"
+alias cd="z"
+
+export PATH="$PATH:opt/nvim-linux-x86_64/bin"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$HOME/.local/bin:$PATH"
+
+
