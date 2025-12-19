@@ -38,7 +38,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 alias cat=/bin/batcat
 
-source '~/dotenv/zsh/fzf.sh'
+source ~/dotenv/zsh/fzf.sh
 
 # [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #
@@ -59,7 +59,7 @@ alias ls="eza --color=always --long --git --icons=always --no-user"
 eval "$(zoxide init zsh)"
 alias cd="z"
 
-export PATH="$PATH:opt/nvim-linux-x86_64/bin"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
