@@ -1,10 +1,17 @@
-# Set up the prompt
+ZSH_SCRIPTS="$HOME/dotenv/zsh"
 
-autoload -Uz promptinit
-promptinit
-prompt adam1
+source ~/dotenv/zsh/fzf.sh
+source ~/dotenv/zsh/aliases.sh
+source ~/dotenv/zsh/plugins.sh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 setopt histignorealldups sharehistory
+setopt autocd
+setopt correct
+setopt histignoredups
+setopt interactivecomments
+
+eval "$(zoxide init zsh)"
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
@@ -13,10 +20,6 @@ bindkey -e
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-
-# Use modern completion system
-autoload -Uz compinit
-compinit
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -32,14 +35,8 @@ zstyle ':completion:*' menu select=long
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
-
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-
-eval "$(zoxide init zsh)"
-
-source ~/dotenv/zsh/fzf.sh
-source ~/dotenv/zsh/aliases.sh
 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
