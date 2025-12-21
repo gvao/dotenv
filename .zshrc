@@ -36,28 +36,10 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-alias cat=/bin/batcat
+eval "$(zoxide init zsh)"
 
 source ~/dotenv/zsh/fzf.sh
-
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-#
-# export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
-# export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-# export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git"
-#
-# _fzf_compgen_path(){
-#   fd --hidden --exclude .git . "$1"
-# }
-#
-# _fzf_compgen_dir(){
-#   fd --type=d --hidden --exclude .git . "$1"
-# }
-
-alias ls="eza --color=always --long --git --icons=always --no-user"
-
-eval "$(zoxide init zsh)"
-alias cd="z"
+source ~/dotenv/zsh/aliases.sh
 
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
@@ -66,5 +48,3 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export PATH="$HOME/.local/bin:$PATH"
-
-
