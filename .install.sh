@@ -1,1 +1,0 @@
-sudo apt zsh -y
