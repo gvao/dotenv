@@ -1,9 +1,21 @@
-# PROMPT MINIMALISTA
+# Carrega o sistema de controle de versão para obter informações do Git
+autoload -Uz vcs_info
+precmd() { vcs_info }
 
-# Cor rápida (sem depender de frameworks)
+# Habilita o git no vcs_info
+zstyle ':vcs_info:*' enable git
+
+# Formato para exibir o branch do git (ex: "(main)")
+zstyle ':vcs_info:git:*' formats '(%b)'
+
+# Cores
 cyan="%F{cyan}"
 yellow="%F{yellow}"
-reset="%f"
+green="%F{green}"
+reset="%f%u%b%s"
 
-# Exibe: (diretório atual) —>
-export PROMP=T"${cyan}%~ ${yellow}%# ${reset}"
+# Configuração do Prompt
+# Linha 1: Diretório atual em ciano
+# Linha 2: Branch do Git em amarelo (se houver) e símbolo do prompt em verde
+PROMPT="${cyan}%~${reset}
+${yellow}${vcs_info_msg_0_} ${green}%# ${reset}"

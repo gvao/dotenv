@@ -1,9 +1,9 @@
 ZSH_SCRIPTS="$HOME/dotenv/zsh"
 
+source ~/dotenv/zsh/env.sh
 source ~/dotenv/zsh/fzf.sh
 source ~/dotenv/zsh/aliases.sh
 source ~/dotenv/zsh/plugins.sh
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/dotenv/zsh/prompt.sh
 source ~/dotenv/zsh/path.sh
 
@@ -40,3 +40,4 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+source ~/dotenv/zsh/syntax-highlighting.sh
