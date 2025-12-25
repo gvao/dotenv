@@ -1,10 +1,10 @@
 ZSH_SCRIPTS="$HOME/dotenv/zsh"
 
+source ~/dotenv/zsh/completion.sh
+source ~/dotenv/zsh/prompt.sh
 source ~/dotenv/zsh/env.sh
 source ~/dotenv/zsh/fzf.sh
 source ~/dotenv/zsh/aliases.sh
-source ~/dotenv/zsh/plugins.sh
-source ~/dotenv/zsh/prompt.sh
 source ~/dotenv/zsh/path.sh
 
 setopt histignorealldups sharehistory
@@ -23,7 +23,7 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-zstyle ':completion:*' auto-description 'specify: %d'
+
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
@@ -36,7 +36,7 @@ zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:
 zstyle ':completion:*' menu select=long
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
+
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
