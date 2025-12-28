@@ -1,11 +1,11 @@
 ZSH_SCRIPTS="$HOME/dotenv/zsh"
 
-source ~/dotenv/zsh/completion.sh
-source ~/dotenv/zsh/prompt.sh
-source ~/dotenv/zsh/env.sh
-source ~/dotenv/zsh/fzf.sh
-source ~/dotenv/zsh/aliases.sh
-source ~/dotenv/zsh/path.sh
+source ./.zsh/completion.sh
+source ./.zsh/prompt.sh
+source ./.zsh/env.sh
+source ./.zsh/fzf.sh
+source ./.zsh/aliases.sh
+source ./.zsh/path.sh
 
 setopt histignorealldups sharehistory
 setopt autocd
@@ -40,4 +40,4 @@ zstyle ':completion:*' use-compctl false
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-source ~/dotenv/zsh/syntax-highlighting.sh
+source ./.zsh/syntax-highlighting.sh
