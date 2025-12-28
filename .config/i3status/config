@@ -1,0 +1,61 @@
+#############################
+#   i3status — minimal pro
+#############################
+
+general {
+    output_format = "i3bar"
+    interval = 3
+    colors = true
+}
+
+# Ordem dos módulos
+order += "cpu_usage"
+order += "memory"
+order += "disk /"
+order += "wireless _first_"
+order += "battery 0"
+order += "tztime local"
+
+#############################
+#   CPU
+#############################
+cpu_usage {
+    format = "   %usage  "
+}
+
+#############################
+#   MEMÓRIA
+#############################
+memory {
+    format = "  %used/%total  "
+}
+
+#############################
+#   DISCO
+#############################
+disk "/" {
+    format = "   %avail  "
+}
+
+#############################
+#   WIFI
+#############################
+wireless _first_ {
+    format_up = "   %essid %quality  "
+    format_down = "   off  "
+}
+
+#############################
+#   BATERIA
+#############################
+battery 0 {
+    format = "   %percentage  "
+    format_down = "   N/A  "
+}
+
+#############################
+#   HORA / DATA
+#############################
+tztime local {
+    format = "   %H:%M %d/%m  "
+}
